@@ -36,9 +36,9 @@ app.get('/', (req, res) => {
 
 //  Iteration 3 - Create a Recipe route
 //  POST  /recipes route
-app.post("/recipes", (req, res) => {
+app.post("/recipes", async (req, res) => {
     try {
-        const response = Recipe.create({
+        const response = await Recipe.create({
             title: req.body.title,
             instructions: req.body.instructions,
             level: req.body.level,
@@ -59,9 +59,9 @@ app.post("/recipes", (req, res) => {
 //  Iteration 4 - Get All Recipes
 //  GET  /recipes route
 
-app.get("/recipes", (req, res) => {
+app.get("/recipes", async (req, res) => {
     try {
-        const response = Recipe.find()
+        const response = await Recipe.find()
         res.status(200).json(response)
     } catch (error) {
         console.log(error)
@@ -73,9 +73,9 @@ app.get("/recipes", (req, res) => {
 //  Iteration 5 - Get a Single Recipe
 //  GET  /recipes/:id route
 
-app.get("/recipes/:id", (req, res) => {
+app.get("/recipes/:id", async (req, res) => {
     try {
-        const response = Recipe.findById(req.params.id)
+        const response = await Recipe.findById(req.params.id)
         res.status(200).json(response)
     } catch (error) {
         console.log(error)
@@ -86,9 +86,9 @@ app.get("/recipes/:id", (req, res) => {
 
 //  Iteration 6 - Update a Single Recipe
 //  PUT  /recipes/:id route
-app.put("/recipes/:id", (req, res) => {
+app.put("/recipes/:id", async (req, res) => {
     try {
-        const response = Recipe.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        const response = await Recipe.findByIdAndUpdate(req.params.id, req.body, { new: true })
         res.status(200).json(response)
     } catch (error) {
         console.log(error)
@@ -98,9 +98,9 @@ app.put("/recipes/:id", (req, res) => {
 
 //  Iteration 7 - Delete a Single Recipe
 //  DELETE  /recipes/:id route
-app.delete("/recipes/:id", (req, res) => {
+app.delete("/recipes/:id", async (req, res) => {
     try {
-        const response = Recipe.findByIdAndDelete(req.params.id)
+        const response = await Recipe.findByIdAndDelete(req.params.id)
         res.status(204).json(response)
     } catch (error) {
         console.log(error)
